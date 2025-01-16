@@ -7,12 +7,6 @@ public class Code17 {
     // Codes ANSI pour les couleurs
     public static final String RESET = "\u001B[0m";
     public static final String RED = "\u001B[31m";
-    public static final String GREEN = "\u001B[32m";
-    public static final String YELLOW = "\u001B[33m";
-    public static final String BLUE = "\u001B[34m";
-    public static final String PURPLE = "\u001B[35m";
-    public static final String CYAN = "\u001B[36m";
-    public static final String WHITE = "\u001B[37m";
 
     //  System.out.println(RED + "Ceci est un texte rouge" + RESET);
 
@@ -22,76 +16,107 @@ public class Code17 {
      */
     public static void main(String[] args) throws Exception {
 
-        Scanner in = new Scanner(System.in);
+        FileWriter ecrire = null; // on crée un FileWriter 
+
+        ecrire = new FileWriter("archive.html"); // on crée un fichier html
+
+        Scanner in = new Scanner(System.in); // Crée un scanner pour les entrées utilisateur
+        Liste archive = new Liste(); // Crée une archive
+
+
+        // Creation des matrices de test
+
+        MatriceEntier matriceTest = new MatriceEntier(3, 3);
+        matriceTest.tabMat = new int[][]{
+                                            {1, 0, 0}, 
+                                            {0, 1, 0}, 
+                                            {0, 0, 1}
+                                        };
+        afficheGeneration(archive, matriceTest, ecrire);
+        
+        archive = new Liste();
+        matriceTest = new MatriceEntier(5, 5);
+        matriceTest.tabMat = new int[][]{
+                                            {0, 0, 0, 0, 0},
+                                            {0, 1, 1, 1, 0},
+                                            {1, 1, 1, 0, 0},
+                                            {0, 0, 0, 0, 0},
+                                            {0, 0, 0, 0, 0}
+                                        };
+        afficheGeneration(archive, matriceTest, ecrire);
+
+
+
+
+
+
+// -------------------------------------------------------------------------------------------------------
+
         int nbGeneration;
         System.out.println("Combien de générations voulez-vous ?");
         nbGeneration = in.nextInt();
 
-        FileWriter ecrire = new FileWriter("archive.html"); // on crée un fichier html
 
 
         for (int g = 0; g < nbGeneration; g++) {
-            System.out.println("Partie : " + g + 1);
+            System.out.println("Partie : " + (g + 1));
         
-        // Création de la matrice de test
-        MatriceEntier matrice = new MatriceEntier(3, 3);
-        /*for(int i = 0 ; i < matrice.nbL ; i++){
-            for(int j = 0 ; j < matrice.nbC ; j++){
-                matrice.tabMat[i][j] = i;
+            // Création de la matrice
+            MatriceEntier matrice;
+            archive = new Liste();
+
+
+            int lignes = 0;
+            int colonnes = 0;
+        
+            while (true) { // 
+                try {
+                    System.out.println("Choisissez la taille de votre génération 0");
+        
+                    System.out.println("Combien de lignes ?");
+                    if (in.hasNextInt()) {
+                        lignes = in.nextInt();
+                        in.nextLine(); // vide le buffer
+                    } else {
+                        in.nextLine(); // vide le buffer
+                        throw new IllegalArgumentException("Entrée invalide. Veuillez saisir un entier.");
+                    }
+        
+                    System.out.println("Combien de colonnes ?");
+                    if (in.hasNextInt()) {
+                        colonnes = in.nextInt();
+                        in.nextLine(); // vide le buffer
+                    } else {
+                        in.nextLine(); // vide le buffer
+                        throw new IllegalArgumentException("Entrée invalide. Veuillez saisir un entier.");
+                    }
+        
+                    if (lignes <= 0 || colonnes <= 0) {
+                        throw new IllegalArgumentException("Les dimensions doivent être des entiers > 0.");
+                    }
+        
+                    matrice = new MatriceEntier(lignes, colonnes);
+                    break;
+        
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                } catch (Exception e) {
+                    System.out.println("Entrée invalide. Veuillez réessayer.");
+                }
             }
+            
+            genMatriceZero(matrice); // Génère la matrice de generation 0
 
-        }*/
-        
-        Liste archive = new Liste(); // Crée une archive
-        matrice = genMatriceZero(matrice); // Génère la matrice de generation 0
-        add(matrice, archive); // Ajoute la matrice à l'archive
+            afficheGeneration(archive, matrice, ecrire);
 
-        System.out.println("La voici :");
-        System.out.println(toString(matrice));
-        
-        // Boucle de 10 générations max 
-        for (int i = 1; i < 10; i++) {
-
-            nextGen(matrice); // Génère la prochaine génération
-
-            // Vérifie si la matrice est déjà dans l'archive
-            if (check(matrice, archive)) {
-               System.out.println("La matrice est déjà dans l'archive == Boucle"); // Affiche un message si la matrice est déjà dans l'archive
-               add(matrice, archive); // Ajoute la matrice à l'archive pour montrer la boucle
-              break; // Sort de la boucle
-           }
-           
-            add(matrice, archive); // Ajoute la matrice à l'archive
-
-        System.out.println("La matrice G" + i + " est :"); // Affiche le numéro de génération
-        System.out.println(toString(matrice));
-
-
-
-        }
-
-        System.out.print("Fin des générations"); // Affiche un message de fin de simulation
-
-        // Affichage des matrices de l'archive dans un fichier html
-
-
-        try {
-
-            ecrire.append(archiveToHtml(archive, matrice.nbL, matrice.nbC)).append("<br />");
-
-            System.out.println("Fichier html généreé avec succès.");
-
-        } catch (IOException e) {
-            System.out.println("Erreur lors de la génération du fichier html.");
-            e.printStackTrace();
-        }
-
+            // Affichage des matrices de l'archive dans un fichier html
 
     
 
-    }
 
-    ecrire.close();
+        }
+
+        ecrire.close();
 
 
 
@@ -199,6 +224,63 @@ public class Code17 {
 
 
     } // FIN MAIN
+
+
+    /**
+     * Affiche les générations successives d'une matrice et les enregistre dans une archive. 
+     * Génère un fichier HTML contenant l'historique des générations.
+     * @param pfArchive IN/OUT : archive des matrices contenant les générations précédentes
+     * @param pfMatrice IN/OUT : matrice représentant la génération actuelle, mise à jour à chaque itération
+     * @param pfEcrire IN : objet FileWriter utilisé pour écrire l'historique des générations dans un fichier HTML
+     * @throws Exception en cas d'erreur lors de l'ajout des matrices dans l'archive, de la génération des matrices ou de l'écriture dans le fichier
+     */
+    public static void afficheGeneration(Liste pfArchive, MatriceEntier pfMatrice, FileWriter pfEcrire) throws Exception {
+
+        Scanner in = new Scanner(System.in); // Crée un scanner pour les entrées utilisateur
+
+
+        // Creation des matrices de test
+
+        add(pfMatrice, pfArchive); // Ajoute la matrice à l'archive
+
+        System.out.println("La voici :");
+        System.out.println(toString(pfMatrice));
+        
+        // Boucle de 10 générations max 
+        for (int i = 1; i < 10; i++) {
+
+            nextGen(pfMatrice); // Génère la prochaine génération
+
+            // Vérifie si la matrice est déjà dans l'archive
+            if (check(pfMatrice, pfArchive)) {
+               add(pfMatrice, pfArchive); // Ajoute la matrice à l'archive pour montrer la boucle
+              break; // Sort de la boucle
+           }
+           
+            add(pfMatrice, pfArchive); // Ajoute la matrice à l'archive
+
+            System.out.println("La matrice G" + i + " est :"); // Affiche le numéro de génération
+            System.out.println(toString(pfMatrice));
+
+
+
+        }
+
+        System.out.print("Fin des générations"); // Affiche un message de fin de simulation
+
+        
+        try {
+
+            pfEcrire.append(archiveToHtml(pfArchive, pfMatrice.nbL, pfMatrice.nbC)).append("<br />");
+
+            System.out.println("Fichier html généreé avec succès.");
+
+        } catch (IOException e) {
+            System.out.println("Erreur lors de la génération du fichier html.");
+            e.printStackTrace();
+        }
+
+    }
 
 
 
@@ -369,10 +451,28 @@ public class Code17 {
     public static boolean check(MatriceEntier pfMat, Liste pfArchive) {
         // Transformation de pfMat en String
         String matString = toStr(pfMat);
+        boolean estVide = true;
+
+        // Vérifie si la matrice est vide 
+        for (int i = 0; i < pfMat.nbL; i++) {
+            for (int j = 0; j < pfMat.nbC; j++) {
+                if (pfMat.tabMat[i][j] == 1) {
+                    estVide = false;
+                    break;
+                } 
+            }
+            
+        }
+
+        if(estVide){
+            System.out.println("La matrice est vide");
+            return true; // La matrice est vide
+        }
     
         // Vérification de son existence dans pfArchive
         for (int i = 0; i <= pfArchive.gen; i++) {
             if (pfArchive.historique[i].equals(matString)) {
+                System.out.println("La matrice est déjà dans l'archive == Boucle"); // Affiche un message si la matrice est déjà dans l'archive
                 return true; // La matrice existe déjà
             }
         }
@@ -405,47 +505,10 @@ public class Code17 {
      * @return la matrice configurée par l'utilisateur
      * @throws Exception en cas d'erreur inattendue
      */
-    public static MatriceEntier genMatriceZero(MatriceEntier pfMatrice) throws Exception {
+    public static void genMatriceZero(MatriceEntier pfMatrice) throws Exception {
 
         Scanner scan = new Scanner(System.in);
-        int lignes = 0;
-        int colonnes = 0;
-    
-        while (true) { // 
-            try {
-                System.out.println("Choisissez la taille de votre génération 0");
-    
-                System.out.println("Combien de lignes ?");
-                if (scan.hasNextInt()) {
-                    lignes = scan.nextInt();
-                    scan.nextLine(); // vide le buffer
-                } else {
-                    throw new IllegalArgumentException("Entrée invalide. Veuillez saisir un entier.");
-                }
-    
-                System.out.println("Combien de colonnes ?");
-                if (scan.hasNextInt()) {
-                    colonnes = scan.nextInt();
-                    scan.nextLine(); // vide le buffer
-                } else {
-                    throw new IllegalArgumentException("Entrée invalide. Veuillez saisir un entier.");
-                }
-    
-                if (lignes <= 0 || colonnes <= 0) {
-                    throw new IllegalArgumentException("Les dimensions doivent être des entiers > 0.");
-                }
-    
-                pfMatrice = new MatriceEntier(lignes, colonnes);
-                break;
-    
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                scan.nextLine(); //vide le buffer
-            } catch (Exception e) {
-                System.out.println("Entrée invalide. Veuillez réessayer.");
-                scan.nextLine(); // vide le buffer
-            }
-        }
+        
     
         System.out.println("Nous allons la configurer !");
         int element = 0;
@@ -466,7 +529,7 @@ public class Code17 {
     
                         if (element != 0 && element != 1) {
                             j--;
-                            throw new IllegalArgumentException("Les dimensions doivent être des entiers = {0,1}.");
+                            throw new IllegalArgumentException("Les cellules doivent être des entiers = {0,1}.");
                         }
     
                         pfMatrice.tabMat[i][j] = element;
@@ -482,8 +545,7 @@ public class Code17 {
             }
             break;
         }
-        
-        return pfMatrice;
+
     }
     
 
@@ -693,4 +755,5 @@ public class Code17 {
         html.append("</table>");
         return html;
     }
+
 }
