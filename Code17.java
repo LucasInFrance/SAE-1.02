@@ -382,45 +382,7 @@ public class Code17 {
         }
     }
 
-
-// -------------------------------------------------------------------------------------------------------
-// --------------------------------------------- Programmes Lucas ----------------------------------------
-// --------------------------------------------- Ligne 380 à 580 -----------------------------------------
-// -------------------------------------------------------------------------------------------------------
-    
-    /**
-     * Génère une représentation HTML complète d'une archive contenant plusieurs générations de matrices.
-     * @param pfArchive IN : liste contenant l'historique des matrices à convertir en HTML
-     * @param pfNbL IN : nombre de lignes des matrices dans l'archive
-     * @param pfNbC IN : nombre de colonnes des matrices dans l'archive
-     * @return une chaîne de caractères contenant le code HTML représentant l'archive
-     * @author Lucas Costagliola
-     */
-    public static String archiveToHtml(Liste pfArchive, int pfNbL, int pfNbC){
-        String ln = System.getProperty("line.separator") ;
-
-        // on récupère la taille de l'archive
-        int tailleArchive = pfArchive.gen+1;
-
-        // on crée le code html
-        String codeHtml = "<html><head><title>TP: Jeu de la vie</title><meta http-equiv='Content-Type' content='application/xhtml+xml; charset=UTF-8' /><style>table{border-collapse:collapse;border: 1px solid black;width:100px;display: inline-table;}tr,td { border: 1px solid black; height:20px;}.on { background-color:grey; }</style></head><body>";
-        codeHtml += ln;
-
-        for (int i = 0; i<tailleArchive; i++){
-            codeHtml += toHtml(pfArchive.historique[i], pfNbL, pfNbC, i); // on transforme chaque matrice de l'archive en html
-            codeHtml += ln; // pour séparer les générations
-
-        }
-
-        // on ferme le code html
-        codeHtml += "</body></html>";
-
-        return codeHtml; // on retourne le code html
-    }
-
-
-
-     /**Transforme le String pfMat en String html
+         /**Transforme le String pfMat en String html
      * @param pfMat IN : matrice à transformer
      * @param pfNbL IN : nombre de lignes de pfMat
      * @param pfNbC IN : nombre de colonnes de pfMat
@@ -464,7 +426,12 @@ public class Code17 {
     }
 
 
-
+    
+// -------------------------------------------------------------------------------------------------------
+// --------------------------------------------- Programmes Lucas ----------------------------------------
+// --------------------------------------------- Ligne 430 à 560 -----------------------------------------
+// -------------------------------------------------------------------------------------------------------
+    
     /**Ajoute pfMat dans pfArchive
      * @param pfMat IN : Matrice que l'on souhaite ajouter
      * @param pfArchive IN/OUT : Archive dans laquelle on ajoute pfMat
