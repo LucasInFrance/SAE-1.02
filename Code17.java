@@ -5,8 +5,7 @@
 
 
 import java.util.Scanner;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class Code17 {
 
@@ -29,8 +28,7 @@ public class Code17 {
 
         System.out.println("-*-*-*-*-*-Génération de parties de test-*-*-*-*-*-\n");
         // Création du fichier html
-        FileWriter ecrire = null; 
-        ecrire = new FileWriter("archive.html");
+        PrintStream ecriture = new PrintStream("archive.html");
         
         //1
         System.out.println("-Partie test 1-");
@@ -41,7 +39,7 @@ public class Code17 {
                                             {0, 1, 0}, 
                                             {0, 0, 1}
                                         };
-        afficherPartie(archive, matriceTest, ecrire); //affichage des résultats
+        afficherPartie(archive, matriceTest, ecriture); //affichage des résultats
 
         //2
         System.out.println("-Partie test 2-");
@@ -54,7 +52,7 @@ public class Code17 {
                                             {0, 0, 0, 0, 0},
                                             {0, 0, 0, 0, 0}
                                         };
-        afficherPartie(archive, matriceTest, ecrire); //affichage des résultats
+        afficherPartie(archive, matriceTest, ecriture); //affichage des résultats
 
 
         System.out.println("\n\nTests effectués avec succès !\n\n");
@@ -136,9 +134,9 @@ public class Code17 {
             // Calcul et affichage des résultats de la partie
             System.out.println("Partie numéro "+ (p + 1));
 
-            afficherPartie(archive, matrice, ecrire);
+            afficherPartie(archive, matrice, ecriture);
         }
-        ecrire.close();
+        ecriture.close();
         lecteur.close();
 
 
@@ -264,7 +262,7 @@ public class Code17 {
      * @throws Exception en cas d'erreur lors de l'ajout des matrices dans l'archive, de la génération des matrices ou de l'écriture dans le fichier
      * @author Mickael FLores
      */
-    public static void afficherPartie(Liste pfArchive, MatriceEntier pfMatrice, FileWriter pfEcrire) throws Exception {
+    public static void afficherPartie(Liste pfArchive, MatriceEntier pfMatrice, PrintStream pfEcrire) throws Exception {
 
         add(pfMatrice, pfArchive); // Ajoute la matrice à l'archive
 
@@ -297,11 +295,12 @@ public class Code17 {
 
         try {
 
-            pfEcrire.append(archiveToHtml(pfArchive, pfMatrice.nbL, pfMatrice.nbC)).append("<br />");
+            pfEcrire.println(archiveToHtml(pfArchive, pfMatrice.nbL, pfMatrice.nbC)); // écriture de l'archive dans le fichier html
+            pfEcrire.println("<br />");
 
             System.out.println("Fichier html généré avec succès.");
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("Erreur lors de la génération du fichier html.");
             e.printStackTrace();
         }
@@ -602,19 +601,20 @@ public class Code17 {
     public static void afficheMatElem(MatriceEntier pfMatrice, int pfL, int pfC) {
 
         String ln = System.getProperty("line.separator");
-        StringBuilder string = new StringBuilder();
+        String chaine = "";
+
         for (int i = 0; i < pfMatrice.nbL; i++) {
             for (int j = 0; j < pfMatrice.nbC; j++) {
                 if (i == pfL && j == pfC) {
-                    string.append(RED + pfMatrice.tabMat[i][j] + RESET).append(" ");
+                    chaine += RED + pfMatrice.tabMat[i][j] + RESET + " ";
                 } else {
-                    string.append(pfMatrice.tabMat[i][j]).append(" ");
+                    chaine += pfMatrice.tabMat[i][j] + " ";
                 }
             }
-            string.append(ln);
+            chaine+= ln;
         }
 
-        System.out.println(string);
+        System.out.println(chaine);
 
     }
 
@@ -765,16 +765,17 @@ public class Code17 {
      * @param pfMatrice : Matrice que l'on souhaite afficher
      * @return Graphique de la matrice
      */
-    public static StringBuilder toString(MatriceEntier pfMatrice){
+    public static String toString(MatriceEntier pfMatrice){
         String ln = System.getProperty("line.separator") ;
-        StringBuilder string = new StringBuilder();
+        String chaine = "";
+
         for (int i = 0; i < pfMatrice.nbL; i++) {
             for (int j = 0; j < pfMatrice.nbC; j++) {
-                string.append(pfMatrice.tabMat[i][j]).append(" ");
+                chaine += pfMatrice.tabMat[i][j] + " ";
             }
-            string.append(ln);
+            chaine += ln;
         }
-        return string;
+        return chaine;
     }
 
     /**
@@ -782,21 +783,22 @@ public class Code17 {
      * @param pfMatrice : Matrice que l'on souhaite afficher
      * @return Graphique HTML de la matrice
      */
-    public static StringBuilder toHTML(MatriceEntier pfMatrice){
+    public static String toHTML(MatriceEntier pfMatrice){
         String ln = System.getProperty("line.separator") ;
-        StringBuilder html = new StringBuilder();
-        html.append("<table border=\"1\">").append(ln);
+        String html = "";
+
+        html += "<table border=\"1\">" + ln;
         for (int i = 0; i < pfMatrice.nbL; i++) {
-            html.append("<tr>");
+            html += "<tr>";
             for (int j = 0; j < pfMatrice.nbC; j++) {
-                html.append("<td>");
-                html.append(pfMatrice.tabMat[i][j]);
-                html.append("</td>");
+                html += "<td>";
+                html += pfMatrice.tabMat[i][j];
+                html += "</td>";
             }
-            html.append("</tr>");
-            html.append(ln);
+            html += "</tr>";
+            html += ln;
         }
-        html.append("</table>");
+        html += "</table>";
         return html;
     }
 
