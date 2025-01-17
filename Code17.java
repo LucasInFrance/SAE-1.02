@@ -449,7 +449,7 @@ public class Code17 {
     }
 
     
-    /**Renvoie true si pfMat existe déjà dans pfArchive, sinon false
+    /**Renvoie true si pfMat est partout à 0 partout ou si elle existe déjà dans pfArchive, sinon false
      * @param pfMat IN : Matrice dont on souhaite vérifier l'existence
      * @param pfArchive IN : Archive dans laquelle on cherche
      * @return si pfMat existe déjà dans pfArchive
@@ -460,7 +460,7 @@ public class Code17 {
         String matString = toStr(pfMat);
         boolean estVide = true;
 
-        // Vérifie si la matrice est vide 
+        // Verification si la matrice est partout à 0 
         for (int i = 0; i < pfMat.nbL; i++) {
             for (int j = 0; j < pfMat.nbC; j++) {
                 if (pfMat.tabMat[i][j] == 1) {
@@ -470,13 +470,13 @@ public class Code17 {
             }
             
         }
-
         if(estVide){
             System.out.println("La matrice est vide, la partie est perdue");
-            return true; // La matrice est vide
+            return true; // La matrice est partout à 0
         }
-    
-        // Vérification de son existence dans pfArchive
+
+        
+        // Vérification de l'existence de la matrice dans pfArchive
         for (int i = 0; i <= pfArchive.gen; i++) {
             if (pfArchive.historique[i].equals(matString)) {
                 System.out.println("Les générations tournent en boucle, la partie est gagnée"); // Affiche un message si la matrice est déjà dans l'archive
@@ -484,7 +484,7 @@ public class Code17 {
             }
         }
     
-        return false; // La matrice n'est pas dans l'archive
+        return false; // La matrice n'est pas dans l'archive et n'est pas partout à 0
     }
     
 
