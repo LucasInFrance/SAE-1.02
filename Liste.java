@@ -1,3 +1,7 @@
+/**
+ * Cette classe gère l'archivage des différentes générations dans le jeu de la vie.
+ * @author  Lucas Costagliola
+ */
 public class Liste{
     String[] historique;
     int gen;
