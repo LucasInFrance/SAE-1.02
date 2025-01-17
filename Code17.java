@@ -67,6 +67,7 @@ public class Code17 {
         
          
         int nbParties;
+        int partie;
         Scanner lecteur = new Scanner(System.in);
         
         System.out.println("\n" +
@@ -77,8 +78,9 @@ public class Code17 {
 
         //Pour chaque partie     
         for (int p = 0; p < nbParties; p++) {
+            partie = p + 1;
 
-            System.out.println("\nPartie : " + (p + 1));
+            System.out.println("\nPartie n°" + partie);
         
             // Création de la matrice
             MatriceEntier matrice;
@@ -130,13 +132,12 @@ public class Code17 {
             // Génération de la matrice de generation 0
             genMatriceZero(matrice); 
 
-            // Calcul et affichage des résultats de la 
-            System.out.println("Partie numéro "+ (p + 1));
+            // Calcul et affichage des résultats de la partie
+            System.out.println("Partie numéro "+ partie);
 
             afficherPartie(archive, matrice, ecriture);
         }
         ecriture.close();
-        lecteur.close();
 
 
 // -------------------------------------------------------------------------------------------------------
@@ -583,7 +584,6 @@ public class Code17 {
             matriceGenere = false;
         }
 
-        lecteur.close();
 
     }
     
