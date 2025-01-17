@@ -554,8 +554,9 @@ public class Code17 {
     
         System.out.println("Nous allons la configurer !");
         int element = 0;
+        boolean matriceGenere;
     
-        while (true) { 
+        while (matriceGenere) { 
             for (int i = 0; i < pfMatrice.nbL; i++) {
                 for (int j = 0; j < pfMatrice.nbC; j++) {
                     try {
@@ -585,7 +586,7 @@ public class Code17 {
                     }
                 }
             }
-            break;
+            matriceGenere = false;
         }
 
     }
