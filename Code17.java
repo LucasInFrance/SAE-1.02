@@ -1,11 +1,10 @@
+import java.util.Scanner;
+import java.io.*;
+
 // -------------------------------------------------------------------------------------------------------
 // ------------------------------------------- Programmes Mickael ----------------------------------------
 // --------------------------------------------- Ligne 0 à 430 -------------------------------------------
 // -------------------------------------------------------------------------------------------------------
-
-
-import java.util.Scanner;
-import java.io.*;
 
 public class Code17 {
 
@@ -386,6 +385,7 @@ public class Code17 {
      * @param pfNbL IN : nombre de lignes des matrices dans l'archive
      * @param pfNbC IN : nombre de colonnes des matrices dans l'archive
      * @return une chaîne de caractères contenant le code HTML représentant l'archive
+     * @author Mickael FLores
      */
     public static String archiveToHtml(Liste pfArchive, int pfNbL, int pfNbC){
         String ln = System.getProperty("line.separator") ;
