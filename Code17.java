@@ -379,52 +379,8 @@ public class Code17 {
         }
     }
 
-         /**Transforme le String pfMat en String html
-     * @param pfMat IN : matrice à transformer
-     * @param pfNbL IN : nombre de lignes de pfMat
-     * @param pfNbC IN : nombre de colonnes de pfMat
-     * @param pfGen IN : numéro de génération
-     * @return le String html 
-     * @author Lucas Costagliola
-     */
-    public static String toHtml(String pfMat, int pfNbL, int pfNbC, int pfGen ){
 
-        String ln = System.getProperty("line.separator") ;
-
-        String html = "<table border=\"1\"><caption>Generation "+pfGen+"</caption>";
-        html += ln;
-
-        int cpt=0;
-
-        //Parcours du String pfMat
-        for (int i = 0 ; i<pfNbL ; i++){
-            //Debut d'une ligne
-            html += "<tr>";
-
-            for (int j = 0 ; j<pfNbC ; j++){
-                //si le caractère est 1, on ajoute class='on'
-                if ( pfMat.charAt(cpt) == '1' ){
-                    html += "<td class='on'></td>";
-                }
-                //sinon on le laisse vide
-                else {
-                    html += "<td></td>";
-                }
-                cpt ++;
-            }
-
-            //Fin d'une ligne
-            html += "</tr>";
-            html += ln;
-        }
-        html += "</table>";
-
-        return html;
-    }
-
-
-
-            /**
+    /**
      * Génère une représentation HTML complète d'une archive contenant plusieurs générations de matrices.
      * @param pfArchive IN : liste contenant l'historique des matrices à convertir en HTML
      * @param pfNbL IN : nombre de lignes des matrices dans l'archive
@@ -531,6 +487,50 @@ public class Code17 {
             }
         }
         return string;
+    }
+
+
+             /**Transforme le String pfMat en String html
+     * @param pfMat IN : matrice à transformer
+     * @param pfNbL IN : nombre de lignes de pfMat
+     * @param pfNbC IN : nombre de colonnes de pfMat
+     * @param pfGen IN : numéro de génération
+     * @return le String html 
+     * @author Lucas Costagliola
+     */
+    public static String toHtml(String pfMat, int pfNbL, int pfNbC, int pfGen ){
+
+        String ln = System.getProperty("line.separator") ;
+
+        String html = "<table border=\"1\"><caption>Generation "+pfGen+"</caption>";
+        html += ln;
+
+        int cpt=0;
+
+        //Parcours du String pfMat
+        for (int i = 0 ; i<pfNbL ; i++){
+            //Debut d'une ligne
+            html += "<tr>";
+
+            for (int j = 0 ; j<pfNbC ; j++){
+                //si le caractère est 1, on ajoute class='on'
+                if ( pfMat.charAt(cpt) == '1' ){
+                    html += "<td class='on'></td>";
+                }
+                //sinon on le laisse vide
+                else {
+                    html += "<td></td>";
+                }
+                cpt ++;
+            }
+
+            //Fin d'une ligne
+            html += "</tr>";
+            html += ln;
+        }
+        html += "</table>";
+
+        return html;
     }
 
 
