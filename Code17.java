@@ -8,34 +8,41 @@ public class Code17 {
     public static final String RESET = "\u001B[0m";
     public static final String RED = "\u001B[31m";
 
-    //  System.out.println(RED + "Ceci est un texte rouge" + RESET);
-
 
     /**
      * Fonction principale
      */
     public static void main(String[] args) throws Exception {
+        
 
-        FileWriter ecrire = null; // on crée un FileWriter 
-
-        ecrire = new FileWriter("archive.html"); // on crée un fichier html
-
-        Scanner in = new Scanner(System.in); // Crée un scanner pour les entrées utilisateur
-        Liste archive = new Liste(); // Crée une archive
+        
+        
 
 
-        // Creation des matrices de test
+// -------------------------------------------------------------------------------------------------------
+// ------------------------------------------- Matrices test ---------------------------------------------
+// -------------------------------------------------------------------------------------------------------
 
-        MatriceEntier matriceTest = new MatriceEntier(3, 3);
+        System.out.println("-*-*-*-*-*-Génération de parties de test-*-*-*-*-*-\n");
+        // Création du fichier html
+        FileWriter ecrire = null; 
+        ecrire = new FileWriter("archive.html");
+        
+        //1
+        System.out.println("-Partie test 1-");
+        Liste archive = new Liste(); // Création de l'archive
+        MatriceEntier matriceTest = new MatriceEntier(3, 3); //création de la matrice
         matriceTest.tabMat = new int[][]{
                                             {1, 0, 0}, 
                                             {0, 1, 0}, 
                                             {0, 0, 1}
                                         };
-        afficheGeneration(archive, matriceTest, ecrire);
-        
-        archive = new Liste();
-        matriceTest = new MatriceEntier(5, 5);
+        afficherPartie(archive, matriceTest, ecrire); //affichage des résultats
+
+        //2
+        System.out.println("-Partie test 2-");
+        archive = new Liste(); // Création de l'archive
+        matriceTest = new MatriceEntier(5, 5); //création de la matrice
         matriceTest.tabMat = new int[][]{
                                             {0, 0, 0, 0, 0},
                                             {0, 1, 1, 1, 0},
@@ -43,7 +50,10 @@ public class Code17 {
                                             {0, 0, 0, 0, 0},
                                             {0, 0, 0, 0, 0}
                                         };
-        afficheGeneration(archive, matriceTest, ecrire);
+        afficherPartie(archive, matriceTest, ecrire); //affichage des résultats
+
+
+        System.out.println("\n\nTests effectués avec succès !\n\n");
 
 
 
@@ -51,15 +61,22 @@ public class Code17 {
 
 
 // -------------------------------------------------------------------------------------------------------
+// ------------------------------------------- Jeu de la Vie ---------------------------------------------
+// -------------------------------------------------------------------------------------------------------
+        
+         
+        int nbParties;
+        Scanner in = new Scanner(System.in);
+        
+        System.out.println("\n" +
+                "-*-*-*-*-*-Jeu de la Vie-*-*-*-*-*-\n" +
+                "Combien de parties voulez-vous jouer ?\n");
+        
+        nbParties = in.nextInt();
 
-        int nbGeneration;
-        System.out.println("Combien de générations voulez-vous ?");
-        nbGeneration = in.nextInt();
-
-
-
-        for (int g = 0; g < nbGeneration; g++) {
-            System.out.println("Partie : " + (g + 1));
+        //Pour chaque partie     
+        for (int p = 0; p < nbParties; p++) {
+            System.out.println("\nPartie : " + (p + 1));
         
             // Création de la matrice
             MatriceEntier matrice;
@@ -68,8 +85,11 @@ public class Code17 {
 
             int lignes = 0;
             int colonnes = 0;
-        
-            while (true) { // 
+
+            
+            while (true) {
+
+                //Saisie de la matrice de l'utilisateur
                 try {
                     System.out.println("Choisissez la taille de votre génération 0");
         
@@ -105,22 +125,22 @@ public class Code17 {
                 }
             }
             
-            genMatriceZero(matrice); // Génère la matrice de generation 0
+            // Génération de la matrice de generation 0
+            genMatriceZero(matrice); 
 
-            afficheGeneration(archive, matrice, ecrire);
+            
+            // Calcul et affichage des résultats de la partie
+            System.out.println("Partie numéro "+ (p + 1));
 
-            // Affichage des matrices de l'archive dans un fichier html
-
-    
-
-
+            afficherPartie(archive, matrice, ecrire);
         }
-
         ecrire.close();
 
 
-
-    
+// -------------------------------------------------------------------------------------------------------
+// ------------------------------------------ Menu de Débuggage ------------------------------------------
+// -------------------------------------------------------------------------------------------------------
+        
         /*
         System.out.println("" +
                 "0.Quitter\n" +
@@ -225,6 +245,10 @@ public class Code17 {
 
     } // FIN MAIN
 
+// -------------------------------------------------------------------------------------------------------
+// ------------------------------------------- Sous Programmes -------------------------------------------
+// -------------------------------------------------------------------------------------------------------
+
 
     /**
      * Affiche les générations successives d'une matrice et les enregistre dans une archive. 
@@ -234,16 +258,14 @@ public class Code17 {
      * @param pfEcrire IN : objet FileWriter utilisé pour écrire l'historique des générations dans un fichier HTML
      * @throws Exception en cas d'erreur lors de l'ajout des matrices dans l'archive, de la génération des matrices ou de l'écriture dans le fichier
      */
-    public static void afficheGeneration(Liste pfArchive, MatriceEntier pfMatrice, FileWriter pfEcrire) throws Exception {
+    public static void afficherPartie(Liste pfArchive, MatriceEntier pfMatrice, FileWriter pfEcrire) throws Exception {
 
         Scanner in = new Scanner(System.in); // Crée un scanner pour les entrées utilisateur
 
 
-        // Creation des matrices de test
-
         add(pfMatrice, pfArchive); // Ajoute la matrice à l'archive
 
-        System.out.println("La voici :");
+        System.out.println("La matrice G0 est :");
         System.out.println(toString(pfMatrice));
         
         // Boucle de 10 générations max 
@@ -266,14 +288,15 @@ public class Code17 {
 
         }
 
-        System.out.print("Fin des générations"); // Affiche un message de fin de simulation
+        System.out.println("Fin des générations"); // Affiche un message de fin de simulation
 
-        
+        // Affichage des matrices de l'archive dans un fichier html
+
         try {
 
             pfEcrire.append(archiveToHtml(pfArchive, pfMatrice.nbL, pfMatrice.nbC)).append("<br />");
 
-            System.out.println("Fichier html généreé avec succès.");
+            System.out.println("Fichier html généré avec succès.");
 
         } catch (IOException e) {
             System.out.println("Erreur lors de la génération du fichier html.");
@@ -465,14 +488,14 @@ public class Code17 {
         }
 
         if(estVide){
-            System.out.println("La matrice est vide");
+            System.out.println("La matrice est vide, la partie est perdue");
             return true; // La matrice est vide
         }
     
         // Vérification de son existence dans pfArchive
         for (int i = 0; i <= pfArchive.gen; i++) {
             if (pfArchive.historique[i].equals(matString)) {
-                System.out.println("La matrice est déjà dans l'archive == Boucle"); // Affiche un message si la matrice est déjà dans l'archive
+                System.out.println("Les générations tournent en boucle, la partie est gagnée"); // Affiche un message si la matrice est déjà dans l'archive
                 return true; // La matrice existe déjà
             }
         }
@@ -517,7 +540,7 @@ public class Code17 {
             for (int i = 0; i < pfMatrice.nbL; i++) {
                 for (int j = 0; j < pfMatrice.nbC; j++) {
                     try {
-                        System.out.println("Que voulez-vous mettre ici : ");
+                        System.out.println("Que voulez-vous mettre ici : 1 pour vivante ou 0 pour morte");
                         afficheMatElem(pfMatrice, i, j);
     
                         if (scan.hasNextInt()) {
