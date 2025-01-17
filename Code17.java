@@ -1,3 +1,6 @@
+
+
+
 import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,14 +13,12 @@ public class Code17 {
 
 
     /**
-     * Fonction principale
+     *Fonction principale
+     *@author Mickael FLores
+     *
      */
     public static void main(String[] args) throws Exception {
         
-
-        
-        
-
 
 // -------------------------------------------------------------------------------------------------------
 // ------------------------------------------- Matrices test ---------------------------------------------
@@ -257,6 +258,7 @@ public class Code17 {
      * @param pfMatrice IN/OUT : matrice représentant la génération actuelle, mise à jour à chaque itération
      * @param pfEcrire IN : objet FileWriter utilisé pour écrire l'historique des générations dans un fichier HTML
      * @throws Exception en cas d'erreur lors de l'ajout des matrices dans l'archive, de la génération des matrices ou de l'écriture dans le fichier
+     * @author Mickael FLores
      */
     public static void afficherPartie(Liste pfArchive, MatriceEntier pfMatrice, FileWriter pfEcrire) throws Exception {
 
@@ -314,6 +316,7 @@ public class Code17 {
      * @param pfNumC IN : indice de la colonne de la cellule cible
      * @return le nombre de cellules vivantes autour de la cellule (pfNumL, pfNumC)
      * @throws Exception en cas d'erreur lors de la manipulation des indices de la matrice
+     * @author Mickael FLores
      */
     public static int nbVie(MatriceEntier pfMatrice, int pfNumL, int pfNumC) throws Exception { 
         int nbVie = 0;
@@ -341,6 +344,7 @@ public class Code17 {
      * @param pfNbL IN : nombre de lignes des matrices dans l'archive
      * @param pfNbC IN : nombre de colonnes des matrices dans l'archive
      * @return une chaîne de caractères contenant le code HTML représentant l'archive
+     * @author Mickael FLores
      */
     public static void nextGen(MatriceEntier pfMatrice) throws Exception {
         // Créer une copie de la matrice actuelle
@@ -374,6 +378,11 @@ public class Code17 {
             }
         }
     }
+
+
+// -------------------------------------------------------------------------------------------------------
+// ------------------------------------------ Programmes Lucas -------------------------------------------
+// -------------------------------------------------------------------------------------------------------
     
     /**
      * Génère une représentation HTML complète d'une archive contenant plusieurs générations de matrices.
@@ -381,6 +390,7 @@ public class Code17 {
      * @param pfNbL IN : nombre de lignes des matrices dans l'archive
      * @param pfNbC IN : nombre de colonnes des matrices dans l'archive
      * @return une chaîne de caractères contenant le code HTML représentant l'archive
+     * @author Lucas Costagliola
      */
     public static String archiveToHtml(Liste pfArchive, int pfNbL, int pfNbC){
         String ln = System.getProperty("line.separator") ;
@@ -412,6 +422,7 @@ public class Code17 {
      * @param pfNbC IN : nombre de colonnes de pfMat
      * @param pfGen IN : numéro de génération
      * @return le String html 
+     * @author Lucas Costagliola
      */
     public static String toHtml(String pfMat, int pfNbL, int pfNbC, int pfGen ){
 
@@ -453,6 +464,7 @@ public class Code17 {
     /**Ajoute pfMat dans pfArchive
      * @param pfMat IN : Matrice que l'on souhaite ajouter
      * @param pfArchive IN/OUT : Archive dans laquelle on ajoute pfMat
+     * @author Lucas Costagliola
      */
     public static void add(MatriceEntier pfMat, Liste pfArchive){
 
@@ -470,6 +482,7 @@ public class Code17 {
      * @param pfMat IN : Matrice dont on souhaite vérifier l'existence
      * @param pfArchive IN : Archive dans laquelle on cherche
      * @return si pfMat existe déjà dans pfArchive
+     * @author Lucas Costagliola
      */
     public static boolean check(MatriceEntier pfMat, Liste pfArchive) {
         // Transformation de pfMat en String
@@ -510,6 +523,7 @@ public class Code17 {
      * Transforme pfMatrice en String
      * @param pfMatrice : Matrice que l'on souhaite transformer
      * @return le String de la matrice
+     * @author Lucas Costagliola
      */
     public static String toStr(MatriceEntier pfMatrice){
         String string = "";
@@ -527,6 +541,7 @@ public class Code17 {
      * @param pfMatrice IN/OUT : matrice à initialiser et configurer
      * @return la matrice configurée par l'utilisateur
      * @throws Exception en cas d'erreur inattendue
+     * @author Lucas Costagliola
      */
     public static void genMatriceZero(MatriceEntier pfMatrice) throws Exception {
 
@@ -572,6 +587,10 @@ public class Code17 {
     }
     
 
+// --------------------------------------------------------------------------------------------------------
+// ------------------------------------------- Code étudiant 17 -------------------------------------------
+// --------------------------------------------------------------------------------------------------------
+    
     /**
      * Affiche la matrice avec un élément spécifique en surbrillance.
      * @param pfMatrice IN : matrice à afficher
