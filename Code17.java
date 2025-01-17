@@ -70,13 +70,13 @@ public class Code17 {
         
          
         int nbParties;
-        Scanner in = new Scanner(System.in);
+        Scanner lecteur = new Scanner(System.in);
         
         System.out.println("\n" +
                 "-*-*-*-*-*-Jeu de la Vie-*-*-*-*-*-\n" +
                 "Combien de parties voulez-vous jouer ?\n");
         
-        nbParties = in.nextInt();
+        nbParties = lecteur.nextInt();
 
         //Pour chaque partie     
         for (int p = 0; p < nbParties; p++) {
@@ -98,20 +98,20 @@ public class Code17 {
                     System.out.println("Choisissez la taille de votre génération 0");
         
                     System.out.println("Combien de lignes ?");
-                    if (in.hasNextInt()) {
-                        lignes = in.nextInt();
-                        in.nextLine(); // vide le buffer
+                    if (lecteur.hasNextInt()) {
+                        lignes = lecteur.nextInt();
+                        lecteur.nextLine(); // vide le buffer
                     } else {
-                        in.nextLine(); // vide le buffer
+                        lecteur.nextLine(); // vide le buffer
                         throw new IllegalArgumentException("Entrée invalide. Veuillez saisir un entier.");
                     }
         
                     System.out.println("Combien de colonnes ?");
-                    if (in.hasNextInt()) {
-                        colonnes = in.nextInt();
-                        in.nextLine(); // vide le buffer
+                    if (lecteur.hasNextInt()) {
+                        colonnes = lecteur.nextInt();
+                        lecteur.nextLine(); // vide le buffer
                     } else {
-                        in.nextLine(); // vide le buffer
+                        lecteur.nextLine(); // vide le buffer
                         throw new IllegalArgumentException("Entrée invalide. Veuillez saisir un entier.");
                     }
         
@@ -139,6 +139,7 @@ public class Code17 {
             afficherPartie(archive, matrice, ecrire);
         }
         ecrire.close();
+        lecteur.close();
 
 
 // -------------------------------------------------------------------------------------------------------
@@ -264,9 +265,6 @@ public class Code17 {
      * @author Mickael FLores
      */
     public static void afficherPartie(Liste pfArchive, MatriceEntier pfMatrice, FileWriter pfEcrire) throws Exception {
-
-        Scanner in = new Scanner(System.in); // Crée un scanner pour les entrées utilisateur
-
 
         add(pfMatrice, pfArchive); // Ajoute la matrice à l'archive
 
@@ -426,7 +424,8 @@ public class Code17 {
     }
 
 
-        /**
+
+            /**
      * Génère une représentation HTML complète d'une archive contenant plusieurs générations de matrices.
      * @param pfArchive IN : liste contenant l'historique des matrices à convertir en HTML
      * @param pfNbL IN : nombre de lignes des matrices dans l'archive
@@ -454,7 +453,6 @@ public class Code17 {
 
         return codeHtml; // on retourne le code html
     }
-
 
     
 // -------------------------------------------------------------------------------------------------------
@@ -546,12 +544,12 @@ public class Code17 {
      */
     public static void genMatriceZero(MatriceEntier pfMatrice) throws Exception {
 
-        Scanner scan = new Scanner(System.in);
+        Scanner lecteur = new Scanner(System.in);
         
     
         System.out.println("Nous allons la configurer !");
         int element = 0;
-        boolean matriceGenere;
+        boolean matriceGenere = true;
     
         while (matriceGenere) { 
             for (int i = 0; i < pfMatrice.nbL; i++) {
@@ -560,9 +558,9 @@ public class Code17 {
                         System.out.println("Que voulez-vous mettre ici : 1 pour vivante ou 0 pour morte");
                         afficheMatElem(pfMatrice, i, j);
     
-                        if (scan.hasNextInt()) {
-                            element = scan.nextInt();
-                            scan.nextLine(); // vide le buffer
+                        if (lecteur.hasNextInt()) {
+                            element = lecteur.nextInt();
+                            lecteur.nextLine(); // vide le buffer
                         } else {
                             throw new IllegalArgumentException("Entrée invalide. Veuillez saisir un entier.");
                         }
@@ -579,12 +577,14 @@ public class Code17 {
                     } catch (Exception e) {
                         j--;
                         System.out.println("Entrée invalide. Veuillez réessayer.");
-                        scan.nextLine(); // vide le buffer
+                        lecteur.nextLine(); // vide le buffer
                     }
                 }
             }
             matriceGenere = false;
         }
+
+        lecteur.close();
 
     }
     
