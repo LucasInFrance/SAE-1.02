@@ -490,7 +490,7 @@ public class Code17 {
     }
 
 
-             /**Transforme le String pfMat en String html
+     /**Transforme le String pfMat en String html
      * @param pfMat IN : matrice à transformer
      * @param pfNbL IN : nombre de lignes de pfMat
      * @param pfNbC IN : nombre de colonnes de pfMat
