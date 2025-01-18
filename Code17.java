@@ -1,9 +1,9 @@
-import java.util.Scanner;
 import java.io.*;
+import java.util.Scanner;
 
 // -------------------------------------------------------------------------------------------------------
 // ------------------------------------------- Programmes Mickael ----------------------------------------
-// --------------------------------------------- Ligne 0 à 430 -------------------------------------------
+// -------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------
 
 public class Code17 {
@@ -413,7 +413,7 @@ public class Code17 {
     
 // -------------------------------------------------------------------------------------------------------
 // --------------------------------------------- Programmes Lucas ----------------------------------------
-// --------------------------------------------- Ligne 430 à 560 -----------------------------------------
+// -------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------
     
     /**Ajoute pfMat dans pfArchive
@@ -433,7 +433,7 @@ public class Code17 {
     }
 
     
-    /**Renvoie true si pfMat est partout à 0 partout ou si elle existe déjà dans pfArchive, sinon false
+    /**Renvoie true si pfMat est remplie de 0, ou si elle existe déjà dans pfArchive, sinon false
      * @param pfMat IN : Matrice dont on souhaite vérifier l'existence
      * @param pfArchive IN : Archive dans laquelle on cherche
      * @return si pfMat existe déjà dans pfArchive
@@ -444,21 +444,19 @@ public class Code17 {
         String matString = toStr(pfMat);
         boolean estVide = true;
 
-        // Verification si la matrice est partout à 0 
+        // Verification si la matrice remplie de 0 
         for (int i = 0; i < pfMat.nbL; i++) {
             for (int j = 0; j < pfMat.nbC; j++) {
                 if (pfMat.tabMat[i][j] == 1) {
                     estVide = false;
                     break;
                 } 
-            }
-            
+            } 
         }
         if(estVide){
             System.out.println("La matrice est vide, la partie est perdue");
-            return true; // La matrice est partout à 0
+            return true; // La matrice est remplie de 0
         }
-
         
         // Vérification de l'existence de la matrice dans pfArchive
         for (int i = 0; i <= pfArchive.gen; i++) {
@@ -468,7 +466,7 @@ public class Code17 {
             }
         }
     
-        return false; // La matrice n'est pas dans l'archive et n'est pas partout à 0
+        return false; // La matrice n'est pas dans l'archive et n'est pas remplie de 0
     }
     
 
@@ -503,22 +501,23 @@ public class Code17 {
 
         String ln = System.getProperty("line.separator") ;
 
+        //Titre
         String html = "<table border=\"1\"><caption>Generation "+pfGen+"</caption>";
         html += ln;
 
         int cpt=0;
 
-        //Parcours du String pfMat
+        //Matrice
         for (int i = 0 ; i<pfNbL ; i++){
             //Debut d'une ligne
             html += "<tr>";
 
             for (int j = 0 ; j<pfNbC ; j++){
-                //si le caractère est 1, on ajoute class='on'
+                //si le caractère est 1, on remplis la cellule
                 if ( pfMat.charAt(cpt) == '1' ){
                     html += "<td class='on'></td>";
                 }
-                //sinon on le laisse vide
+                //sinon on la laisse vide
                 else {
                     html += "<td></td>";
                 }
@@ -567,7 +566,7 @@ public class Code17 {
     
                         if (element != 0 && element != 1) {
                             j--;
-                            throw new IllegalArgumentException("Les cellules doivent être des entiers = {0,1}.");
+                            throw new IllegalArgumentException("Vous ne pouvez mettre que 1 (vivante) ou 0 (morte).");
                         }
     
                         pfMatrice.tabMat[i][j] = element;
