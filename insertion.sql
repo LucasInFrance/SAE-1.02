@@ -52,7 +52,7 @@ CREATE TABLE Commander (
 CREATE TABLE Catalogue (
    idNomC VARCHAR(30),
    CONSTRAINT pk_catalogue PRIMARY KEY (idNomC)
-)
+);
 
 
 CREATE TABLE Article (
@@ -64,7 +64,7 @@ CREATE TABLE Article (
    descA VARCHAR(120),
    CONSTRAINT pk_article PRIMARY KEY (idRefA),
    CONSTRAINT ck_article_prixu CHECK (prixU>0)
-)
+);
 
 
 CREATE TABLE BonCde (
@@ -90,6 +90,6 @@ CREATE TABLE BonCde (
    CONSTRAINT ck_client_fraisport CHECK (fraisPort=5.90 OR fraisPort=6.00 OR fraisPort=7.50),
    CONSTRAINT fk_client_idnumclient FOREIGN KEY (idNumClient) REFERENCES Client(idNumClient),
    CONSTRAINT fk_client_idnomr FOREIGN KEY (idNomR) REFERENCES Livrer(idNomR)
-)
+);
 
 
