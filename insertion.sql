@@ -12,14 +12,18 @@ CREATE TABLE CLIENT(
     telF CHAR(10),
     telP CHAR(10),
     CONSTRAINT pk_client PRIMARY KEY(idNumClient)
-); CREATE TABLE Livrer(
+); 
+
+CREATE TABLE Livrer(
     idNomR VARCHAR(30),
     adNumR VARCHAR(6),
     adVoieR VARCHAR(30),
     adCPR CHAR(5),
     adLocaliteR VARCHAR(30),
     CONSTRAINT pk_livrer PRIMARY KEY(idNomR)
-); CREATE TABLE Presenter(
+); 
+
+CREATE TABLE Presenter(
     idNomC CHAR(5),
     idRefA VARCHAR(3),
     numPage VARCHAR(30),
@@ -27,7 +31,9 @@ CREATE TABLE CLIENT(
     CONSTRAINT pk_presenter PRIMARY KEY(idNomC, idRefA),
     CONSTRAINT fk_presenter_catalogue FOREIGN KEY(idNomC) REFERENCES Catalogue(idNomC),
     CONSTRAINT fk_presenter_article FOREIGN KEY(idRefA) REFERENCES Article(idRefA)
-); CREATE TABLE CLIENT(
+); 
+
+CREATE TABLE CLIENT(
     idRefA CHAR(9),
     idNumBC DECIMAL(10),
     -- taille non précisée
@@ -39,10 +45,14 @@ CREATE TABLE CLIENT(
     CONSTRAINT pk_client PRIMARY KEY(idRefA, idNumBC),
     CONSTRAINT fk_client_article FOREIGN KEY(idRefA) REFERENCES Article(idRefA),
     CONSTRAINT fk_commander_boncde FOREIGN KEY(idNumBC) REFERENCES BonCde(idNumBC)
-); CREATE TABLE Catalogue(
+); 
+
+CREATE TABLE Catalogue(
     idNomC VARCHAR(30),
     CONSTRAINT pk_catalogue PRIMARY KEY(idNomC)
-); CREATE TABLE Article(
+);
+
+CREATE TABLE Article(
     idRefA CHAR(9),
     nomA VARCHAR(30),
     couleur VARCHAR(30),
