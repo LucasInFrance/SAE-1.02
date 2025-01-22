@@ -87,7 +87,7 @@ CREATE TABLE Article (
 )
 
 
-CREATE TABLE Client (
+CREATE TABLE BonCde (
    idNumBC DECIMAL(10), -- taille non précisée
    dateBC DATE, -- Contrainte JJ/MM/AAAA
    codeAv CHAR(5),
