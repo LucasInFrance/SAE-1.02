@@ -12,6 +12,8 @@ CREATE TABLE Client (
    telF CHAR(10),
    telP CHAR(10),
    CONSTRAINT pk_client PRIMARY KEY (idNumClient)
+   CONSTRAINT ck_boncde_civilite CHECK (civilite='M' OR civilite="Mme"),
+
 );
 
 
@@ -46,6 +48,7 @@ CREATE TABLE Commander (
    CONSTRAINT pk_client PRIMARY KEY (idRefA, idNumBC),
    CONSTRAINT fk_client_article FOREIGN KEY (idRefA) REFERENCES Article(idRefA),
    CONSTRAINT fk_commander_boncde FOREIGN KEY (idNumBC) REFERENCES BonCde(idNumBC)
+   CONSTRAINT ck_commander_qteA CHECK (qteA>0)
 );
 
 
@@ -81,15 +84,16 @@ CREATE TABLE BonCde (
    fraisPort DECIMAL(1,2),
    idNumClient CHAR(5),
    idNomR VARCHAR(30),
-   CONSTRAINT pk_client PRIMARY KEY (idNumBC),
-   CONSTRAINT ck_client_remise CHECK (remise>=0 AND remise<=100),
-   CONSTRAINT ck_client_model CHECK (modeL='Do' OR modeL="RD" OR modeL='RR'),
-   CONSTRAINT ck_client_typep CHECK (typeP='CAB' OR typeP='CHB' OR typeP='CHD' OR typeP='CRD'),
-   CONSTRAINT uk_client_numcb UNIQUE (numCB),
-   CONSTRAINT ck_client_fraiscr CHECK (fraisCR=0.00 OR fraisCR=6.90),
-   CONSTRAINT ck_client_fraisport CHECK (fraisPort=5.90 OR fraisPort=6.00 OR fraisPort=7.50),
-   CONSTRAINT fk_client_idnumclient FOREIGN KEY (idNumClient) REFERENCES Client(idNumClient),
-   CONSTRAINT fk_client_idnomr FOREIGN KEY (idNomR) REFERENCES Livrer(idNomR)
+   CONSTRAINT pk_boncde PRIMARY KEY (idNumBC),
+   CONSTRAINT ck_boncde_idNumBC CHECK (idNumBC>0) 
+   CONSTRAINT ck_boncde_remise CHECK (remise>=0 AND remise<=100),
+   CONSTRAINT ck_boncde_model CHECK (modeL='Do' OR modeL="RD" OR modeL='RR'),
+   CONSTRAINT ck_boncde_typep CHECK (typeP='CAB' OR typeP='CHB' OR typeP='CHD' OR typeP='CRD'),
+   CONSTRAINT uk_boncde_numcb UNIQUE (numCB),
+   CONSTRAINT ck_boncde_fraiscr CHECK (fraisCR=0.00 OR fraisCR=6.90),
+   CONSTRAINT ck_boncde_fraisport CHECK (fraisPort=5.90 OR fraisPort=6.00 OR fraisPort=7.50),
+   CONSTRAINT fk_boncde_idnumclient FOREIGN KEY (idNumClient) REFERENCES Client(idNumClient),
+   CONSTRAINT fk_boncde_idnomr FOREIGN KEY (idNomR) REFERENCES Livrer(idNomR)
 );
 
 
