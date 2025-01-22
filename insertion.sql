@@ -56,7 +56,7 @@ CONSTRAINT fk_presenter_article FOREIGN KEY (idRefA)
 
 
 
-CREATE TABLE Client (
+CREATE TABLE Commander (
 idRefA CHAR(9),
 idNumBC DECIMAL(10), -- taille non précisée
 qteA DECIMAL(10), -- CONTRAINTE A FAIRE
