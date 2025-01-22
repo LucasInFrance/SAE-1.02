@@ -274,7 +274,7 @@ public class Code17 {
 
             nextGen(pfMatrice); // Génère la prochaine génération
 
-            // Vérifie si la matrice est déjà dans l'archive
+            // Vérifie si la matrice est déjà dans l'archive ou si elle est remplie de 0
             if (check(pfMatrice, pfArchive)) {
                add(pfMatrice, pfArchive); // Ajoute la matrice à l'archive pour montrer la boucle
               break; // Sort de la boucle
@@ -343,7 +343,7 @@ public class Code17 {
     * @param pfMatrice IN/OUT : la matrice de cellules actuelle qui sera mise à jour pour la prochaine génération
     * @author  Mickael FLores
     */
-    public static void nextGen(MatriceEntier pfMatrice) throws Exception {
+    public static void nextGen(MatriceEntier pfMatrice){
         // Créer une copie de la matrice actuelle
         MatriceEntier oldMatrice = new MatriceEntier(pfMatrice.nbL, pfMatrice.nbC);
     
@@ -441,7 +441,7 @@ public class Code17 {
         String matString = toStr(pfMat);
         boolean estVide = true;
 
-        // Verification si la matrice remplie de 0 
+        // Verification si la matrice est remplie de 0 
         for (int i = 0; i < pfMat.nbL; i++) {
             for (int j = 0; j < pfMat.nbC; j++) {
                 if (pfMat.tabMat[i][j] == 1) {
