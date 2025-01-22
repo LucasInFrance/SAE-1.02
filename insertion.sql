@@ -1,7 +1,3 @@
-
-
-
-
 CREATE TABLE Client (
 idNumClient CHAR(5),
 civilite VARCHAR(3),
@@ -15,12 +11,8 @@ dateN DATE,
 mel VARCHAR(30),
 telF CHAR(10),
 telP CHAR(10),
-
-
 CONSTRAINT pk_client PRIMARY KEY (idNumClient)
 );
-
-
 
 
 CREATE TABLE Livrer (
@@ -29,12 +21,8 @@ adNumR VARCHAR(6),
 adVoieR VARCHAR(30),
 adCPR CHAR(5),
 adLocaliteR VARCHAR(30),
-
-
 CONSTRAINT pk_livrer PRIMARY KEY (idNomR)
 );
-
-
 
 
 CREATE TABLE Presenter (
@@ -42,15 +30,9 @@ idNomC CHAR(5),
 idRefA VARCHAR(3),
 numPage VARCHAR(30),
 codeP VARCHAR(30),
-
-
-CONSTRAINT pk_presenter PRIMARY KEY (idNomC, idRefA)
-CONSTRAINT fk_presenter_catalogue FOREIGN KEY (idNomC)
-   REFERENCES Catalogue(idNomC)
-
-
-CONSTRAINT fk_presenter_article FOREIGN KEY (idRefA)
-   REFERENCES Article(idRefA)
+CONSTRAINT pk_presenter PRIMARY KEY (idNomC, idRefA),
+CONSTRAINT fk_presenter_catalogue FOREIGN KEY (idNomC) REFERENCES Catalogue(idNomC),
+CONSTRAINT fk_presenter_article FOREIGN KEY (idRefA) REFERENCES Article(idRefA)
 );
 
 
@@ -61,10 +43,8 @@ idRefA CHAR(9),
 idNumBC DECIMAL(10), -- taille non précisée
 qteA DECIMAL(10), -- CONTRAINTE A FAIRE
 tailleA DECIMAL(10), --
-
-
-CONSTRAINT pk_client PRIMARY KEY (idRefA, idNumBC)
-CONSTRAINT fk_client_article FOREIGN KEY (idRefA) REFERENCES Article(idRefA)
+CONSTRAINT pk_client PRIMARY KEY (idRefA, idNumBC),
+CONSTRAINT fk_client_article FOREIGN KEY (idRefA) REFERENCES Article(idRefA),
 CONSTRAINT fk_commander_boncde FOREIGN KEY (idNumBC) REFERENCES BonCde(idNumBC)
 );
 
