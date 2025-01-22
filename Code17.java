@@ -339,13 +339,10 @@ public class Code17 {
 
 
     /**
-     * Génère une représentation HTML complète d'une archive contenant plusieurs générations de matrices.
-     * @param pfArchive IN : liste contenant l'historique des matrices à convertir en HTML
-     * @param pfNbL IN : nombre de lignes des matrices dans l'archive
-     * @param pfNbC IN : nombre de colonnes des matrices dans l'archive
-     * @return une chaîne de caractères contenant le code HTML représentant l'archive
-     * @author Mickael FLores
-     */
+    * Passe la matrice de cellules d'une génération à la suivante selon les règles du jeu de la vie
+    * @param pfMatrice IN/OUT : la matrice de cellules actuelle qui sera mise à jour pour la prochaine génération
+    * @author  Mickael FLores
+    */
     public static void nextGen(MatriceEntier pfMatrice) throws Exception {
         // Créer une copie de la matrice actuelle
         MatriceEntier oldMatrice = new MatriceEntier(pfMatrice.nbL, pfMatrice.nbC);
