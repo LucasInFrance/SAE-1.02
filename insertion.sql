@@ -94,7 +94,7 @@ CREATE TABLE Presenter (
    CONSTRAINT pk_presenter PRIMARY KEY (idNomC, idRefA),
    CONSTRAINT fk_presenter_idnomc FOREIGN KEY (idNomC) REFERENCES Catalogue(idNomC),
    CONSTRAINT fk_presenter_idrefa FOREIGN KEY (idRefA) REFERENCES Article(idRefA),
-   CONSTRAINT ck_presenter_codep CHECK (codeP BETWEEN 'A' AND 'Z') -- A vérifier si fonctionne, sinon LIKE '[A-Z]'
+   CONSTRAINT ck_presenter_codep CHECK (codeP BETWEEN 'A' AND 'Z')
 );
 
 
