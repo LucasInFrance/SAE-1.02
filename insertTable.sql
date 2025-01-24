@@ -117,9 +117,9 @@ VALUES (
   1001,
   DATE '2025-01-24', 
   '39626',              
-  0.00,               -- pas de remise
-  'Do',               -- à domicile
-  'CAB',              -- paiement par carte bancaire
+  0.00,               -- pas de remise à notre connaissance
+  'RD',
+  'CAB',              
   '1111999922224444',
   '0127',
   '192',
@@ -201,8 +201,8 @@ VALUES (
   DATE '2025-01-24',
   '39626', 
   0.00,
-  'Do',       -- probablement la même livraison rapide/7,50
-  'CHD',      -- paiement par chèque
+  'Do',
+  'CHD',
   NULL,
   NULL,
   NULL,
@@ -235,7 +235,7 @@ VALUES (
    'Rue du Contre Sens',
    '31700',
    'Blagnac',
-   DATE '1984-01-20',         -- d’après ce qui figure sur le bon
+   DATE '1984-01-20',
    'alain.verse@gmail.com',
    '0606000000',
    '0505000000'
@@ -251,11 +251,11 @@ VALUES (
   DATE '2025-01-24',
   '39626',
   0.00,
-  'RR',             -- livraison à domicile (5,90)
+  'RR',      
   'CAB',
-  '9999888877776666',  -- si carte différente ; sinon modifiez
-  '0126',           -- date d’expiration, p.ex. 01/26
-  '987',            -- cryptogramme
+  '9999888877776666',
+  '0126',           
+  '987',          
   0.00,
   6.00,
   '12345', 
