@@ -1,3 +1,21 @@
+CREATE TABLE Catalogue (
+   idNomC VARCHAR(30),
+   CONSTRAINT pk_catalogue PRIMARY KEY (idNomC)
+);
+
+
+CREATE TABLE Article (
+   idRefA CHAR(9),
+   nomA VARCHAR(30),
+   couleur VARCHAR(30),
+   prixU DECIMAL(10,2), -- Taille non précisée
+   taillesA CHAR(5),
+   descA VARCHAR(120),
+   CONSTRAINT pk_article PRIMARY KEY (idRefA),
+   CONSTRAINT ck_article_prixu CHECK (prixU>0)
+);
+
+
 CREATE TABLE Client (
    idNumClient CHAR(5),
    civilite VARCHAR(3),
@@ -7,12 +25,12 @@ CREATE TABLE Client (
    adVoie VARCHAR(30),
    adCP CHAR(5),
    adLocalite VARCHAR(30),
-   dateN DATE,
+   dateN DATE, -- Contrainte JJ/MM/AAAA
    mel VARCHAR(30),
    telF CHAR(10),
    telP CHAR(10),
-   CONSTRAINT pk_client PRIMARY KEY (idNumClient)
-   CONSTRAINT ck_boncde_civilite CHECK (civilite='M' OR civilite="Mme"),
+   CONSTRAINT pk_client PRIMARY KEY (idNumClient),
+   CONSTRAINT ck_client_civilite CHECK (civilite='M' OR civilite="Mme")
 
 );
 
@@ -27,54 +45,11 @@ CREATE TABLE Livrer (
 );
 
 
-CREATE TABLE Presenter (
-   idNomC CHAR(5),
-   idRefA VARCHAR(3),
-   numPage VARCHAR(30),
-   codeP VARCHAR(30),
-   CONSTRAINT pk_presenter PRIMARY KEY (idNomC, idRefA),
-   CONSTRAINT fk_presenter_catalogue FOREIGN KEY (idNomC) REFERENCES Catalogue(idNomC),
-   CONSTRAINT fk_presenter_article FOREIGN KEY (idRefA) REFERENCES Article(idRefA)
-);
-
-
-
-
-CREATE TABLE Commander (
-   idRefA CHAR(9),
-   idNumBC DECIMAL(10), -- taille non précisée
-   qteA DECIMAL(10), -- CONTRAINTE A FAIRE
-   tailleA DECIMAL(10), --
-   CONSTRAINT pk_client PRIMARY KEY (idRefA, idNumBC),
-   CONSTRAINT fk_client_article FOREIGN KEY (idRefA) REFERENCES Article(idRefA),
-   CONSTRAINT fk_commander_boncde FOREIGN KEY (idNumBC) REFERENCES BonCde(idNumBC)
-   CONSTRAINT ck_commander_qteA CHECK (qteA>0)
-);
-
-
-CREATE TABLE Catalogue (
-   idNomC VARCHAR(30),
-   CONSTRAINT pk_catalogue PRIMARY KEY (idNomC)
-);
-
-
-CREATE TABLE Article (
-   idRefA CHAR(9),
-   nomA VARCHAR(30),
-   couleur VARCHAR(30),
-   prixU DECIMAL(10,2), -- Type Reel
-   taillesA CHAR(5),
-   descA VARCHAR(120),
-   CONSTRAINT pk_article PRIMARY KEY (idRefA),
-   CONSTRAINT ck_article_prixu CHECK (prixU>0)
-);
-
-
 CREATE TABLE BonCde (
    idNumBC DECIMAL(10), -- taille non précisée
    dateBC DATE, -- Contrainte JJ/MM/AAAA
    codeAv CHAR(5),
-   remise DECIMAL (10,2), -- Type Reel
+   remise DECIMAL (3,2),
    modeL CHAR(2),
    typeP CHAR(3),
    numCB CHAR(16),
@@ -97,3 +72,25 @@ CREATE TABLE BonCde (
 );
 
 
+CREATE TABLE Presenter (
+   idNomC VARCHAR(30),
+   idRefA CHAR(9),
+   numPage VARCHAR(3),
+   codeP CHAR(1),
+   CONSTRAINT pk_presenter PRIMARY KEY (idNomC, idRefA),
+   CONSTRAINT fk_presenter_idnomc FOREIGN KEY (idNomC) REFERENCES Catalogue(idNomC),
+   CONSTRAINT fk_presenter_idrefa FOREIGN KEY (idRefA) REFERENCES Article(idRefA),
+   CONSTRAINT ck_presenter_codep CHECK (codeP BETWEEN 'A' AND 'Z') -- A vérifier si fonctionne, sinon LIKE '[A-Z]'
+);
+
+
+CREATE TABLE Commander (
+   idRefA CHAR(9),
+   idNumBC DECIMAL(10), -- Taille non précisée
+   qteA DECIMAL(10), -- //
+   tailleA DECIMAL(10), -- //
+   CONSTRAINT pk_commander PRIMARY KEY (idRefA, idNumBC),
+   CONSTRAINT fk_commander_idrefa FOREIGN KEY (idRefA) REFERENCES Article(idRefA),
+   CONSTRAINT fk_commander_idnumbc FOREIGN KEY (idNumBC) REFERENCES BonCde(idNumBC),
+   CONSTRAINT ck_commander_qteA CHECK (qteA>0)
+);
