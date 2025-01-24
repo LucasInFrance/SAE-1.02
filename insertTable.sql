@@ -1,3 +1,91 @@
+INSERT INTO Catalogue
+VALUES ('Hiver');
+
+--Parka 3 en 1
+
+INSERT INTO Article
+VALUES ('D0026.023', 'Parka 3 en 1', 'Camel', 149.00, '34/56', 'Gilet amovible doublé Thermolactyl. Parka:tissu déperlant 57% polyester, 35% coton, 8% polyamide.');
+INSERT INTO Presenter
+VALUES ('Hiver', 'D0026.023', '4', 'A');
+
+--Jean coupe Mom
+
+INSERT INTO Article
+VALUES ('D6606.001', 'Jean coupe Mom', 'Denim foncé', 45.99, '38/52', '99% coton, 1% élasthanne. Ceinture à passants. Bouton, glissière, 2 poches + 1 poche devant. 2 poches dos.');
+INSERT INTO Presenter
+VALUES ('Hiver', 'D6606.001', '4', 'B');
+
+--Sac en croute de cuir
+
+INSERT INTO Article
+VALUES ('D0615.004', 'Sac en croûte de cuir', 'Marron animalier', 59.99, '', 'Croûte de cuir motif animalier.');
+INSERT INTO Presenter
+VALUES ('Hiver', 'D0615.004', '4', 'C');
+
+--Pulls marinière épaule boutonée
+
+INSERT INTO Article
+VALUES ('D5333.025', 'Pull marinière épaule', 'Beige rayé', 49.99, '34/56', '63% polyester (dont 50% polyester recyclé), 23% acrylique. 10% laine, 4% élasthane. Col asymétrique');
+INSERT INTO Presenter
+VALUES ('Hiver', 'D5333.025', '4', 'D');
+
+INSERT INTO Article
+VALUES ('D5333.013', 'Pull marinière épaule', 'Blanc rayé', 49.99, '34/56', '63% polyester (dont 50% polyester recyclé), 23% acrylique. 10% laine, 4% élasthane. Col asymétrique');
+INSERT INTO Presenter
+VALUES ('Hiver', 'D5333.013', '4', 'D');
+
+INSERT INTO Article
+VALUES ('D5333.001', 'Pull marinière épaule', 'Marine rayé', 49.99, '34/56', '63% polyester (dont 50% polyester recyclé), 23% acrylique. 10% laine, 4% élasthane. Col asymétrique');
+INSERT INTO Presenter
+VALUES ('Hiver', 'D5333.001', '4', 'D');
+
+--T-shirts Essential
+
+INSERT INTO Article
+VALUES ('D0295.009', 'T-shirts Essential', '', 25.99, '38', '');
+INSERT INTO Presenter
+VALUES ('Hiver', 'D0295.009', '100', '');
+
+--Fine côte Thermodactyl
+
+INSERT INTO Article
+VALUES ('D6917.006', 'Fine côte Thermodactyl', '', 25.99, '38', '');
+INSERT INTO Presenter
+VALUES ('Hiver', 'D6917.006', '106', '');
+
+
+
+--Relais
+
+INSERT INTO Livrer VALUES ('Consigne La Poste Pickup Capitole', '9', 'Rue Lafayette à l''intérieur du bureau', '31000', 'Toulouse');
+
+INSERT INTO Livrer VALUES ('Consigne Pickup La Poste Remusat', '25', 'Rue de Remusat dans le sas d''entrée', '31000', 'Toulouse');
+
+INSERT INTO Livrer VALUES ('Excklusive', '20', 'Rue Sainte Ursule', '31000', 'Toulouse');
+
+INSERT INTO Livrer VALUES ('Four Twenty CBD Shop', '40', 'Rue Pargaminières', '31000', 'Toulouse');
+
+INSERT INTO Livrer VALUES ('My Look', '12', 'Rue des Changes', '31000', 'Toulouse');
+
+INSERT INTO Livrer VALUES ('Consigne Smart Wash Toulouse', '29', 'Rue du Rempart Matabiau', '31000', 'Toulouse');
+
+INSERT INTO Livrer VALUES ('GSM Services 31', '3bis', 'Boulevard de Strasbourg', '31000', 'Toulouse');
+
+INSERT INTO Livrer VALUES ('Midica Relais', '22', 'Rue des Tourneurs', '31000', 'Toulouse');
+
+INSERT INTO Livrer VALUES ('KDC Nutrition', '9', 'Rue de Bayard', '31000', 'Toulouse');
+
+INSERT INTO Livrer VALUES ('Asia Shop', '18', 'Rue Matabiau', '31000', 'Toulouse');
+
+INSERT INTO Livrer VALUES ('Carrefour City', '43', 'Rue de Metz', '31000', 'Toulouse');
+
+INSERT INTO Livrer VALUES ('La Poste de Toulouse Arnaud', '17', 'Boulevard Lascrosses', '31000', 'Toulouse');
+
+
+
+-- CLIENTS -----------------------------------------------------------------------------------
+
+
 -- Client 1 : Marc Assein
 INSERT INTO Client (
    idNumClient, civilite, nom, prenom,
