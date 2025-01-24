@@ -208,7 +208,7 @@ VALUES (
   NULL,
   0.00,
   5.90,
-  '12678',    -- même cliente qu’au 2e bon
+  '12678',    -- même cliente
   NULL
 );
 
