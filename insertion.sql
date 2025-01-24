@@ -1,3 +1,15 @@
+DROP TABLE Commander;
+DROP TABLE Presenter;
+DROP TABLE BonCde;
+DROP TABLE Livrer;
+DROP TABLE Client;
+DROP TABLE Article;
+DROP TABLE Catalogue;
+
+
+
+
+
 CREATE TABLE Catalogue (
    idNomC VARCHAR(30),
    CONSTRAINT pk_catalogue PRIMARY KEY (idNomC)
@@ -35,14 +47,16 @@ CREATE TABLE Client (
 );
 
 
+
 CREATE TABLE Livrer (
-   idNomR VARCHAR(30),
+   idNomR VARCHAR(40), --30char trop cours pour certains relais
    adNumR VARCHAR(6),
-   adVoieR VARCHAR(30),
+   adVoieR VARCHAR(40), --30char trop cours pour certains relais
    adCPR CHAR(5),
    adLocaliteR VARCHAR(30),
    CONSTRAINT pk_livrer PRIMARY KEY (idNomR)
 );
+
 
 
 CREATE TABLE BonCde (
@@ -58,7 +72,7 @@ CREATE TABLE BonCde (
    fraisCR DECIMAL(1,2),
    fraisPort DECIMAL(1,2),
    idNumClient CHAR(5),
-   idNomR VARCHAR(30),
+   idNomR VARCHAR(40), --30char trop cours pour certains relais
    CONSTRAINT pk_boncde PRIMARY KEY (idNumBC),
    CONSTRAINT ck_boncde_idNumBC CHECK (idNumBC>0),
    CONSTRAINT ck_boncde_remise CHECK (remise>=0 AND remise<=100),
