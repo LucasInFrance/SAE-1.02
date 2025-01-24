@@ -30,7 +30,7 @@ CREATE TABLE Client (
    telF CHAR(10),
    telP CHAR(10),
    CONSTRAINT pk_client PRIMARY KEY (idNumClient),
-   CONSTRAINT ck_client_civilite CHECK (civilite='M' OR civilite="Mme")
+   CONSTRAINT ck_client_civilite CHECK (civilite='M' OR civilite='Mme')
 
 );
 
@@ -62,7 +62,7 @@ CREATE TABLE BonCde (
    CONSTRAINT pk_boncde PRIMARY KEY (idNumBC),
    CONSTRAINT ck_boncde_idNumBC CHECK (idNumBC>0),
    CONSTRAINT ck_boncde_remise CHECK (remise>=0 AND remise<=100),
-   CONSTRAINT ck_boncde_model CHECK (modeL='Do' OR modeL="RD" OR modeL='RR'),
+   CONSTRAINT ck_boncde_model CHECK (modeL='Do' OR modeL='RD' OR modeL='RR'),
    CONSTRAINT ck_boncde_typep CHECK (typeP='CAB' OR typeP='CHB' OR typeP='CHD' OR typeP='CRD'),
    CONSTRAINT uk_boncde_numcb UNIQUE (numCB),
    CONSTRAINT ck_boncde_fraiscr CHECK (fraisCR=0.00 OR fraisCR=6.90),
