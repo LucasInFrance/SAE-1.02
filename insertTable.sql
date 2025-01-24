@@ -1,102 +1,3 @@
--- Relais ------------------------------------------------------------------------------------------
-INSERT INTO Livrer(idNomR, adNumR, adVoieR, adCPR, adLocaliteR)
-VALUES
-  (
-    'Consigne La Poste Pickup Capitole',
-    '9',
-    'Rue Lafayette à l''intérieur du bureau',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'Consigne Pickup La Poste Remusat',
-    '25',
-    'Rue de Remusat dans le sas d''entrée',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'Excklusive',
-    '20',
-    'Rue Sainte Ursule',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'Four Twenty CBD Shop',
-    '40',
-    'Rue Pargaminières',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'My Look',
-    '12',
-    'Rue des Changes',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'Consigne Smart Wash Toulouse',
-    '29',
-    'Rue du Rempart Matabiau',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'GSM Services 31',
-    '3bis',
-    'Boulevard de Strasbourg',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'Midica Relais',
-    '22',
-    'Rue des Tourneurs',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'KDC Nutrition',
-    '9',
-    'Rue de Bayard',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'Asia Shop',
-    '18',
-    'Rue Matabiau',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'Carrefour City',
-    '43',
-    'Rue de Metz',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'La Poste de Toulouse Arnaud Bernard',
-    '17',
-    'Boulevard Lascrosses',
-    '31000',
-    'Toulouse'
-  );
-
-
-
-
-
--- CLIENTS -----------------------------------------------------------------------------------
-
-
-
-
-
-
 -- Client 1 : Marc Assein
 INSERT INTO Client (
    idNumClient, civilite, nom, prenom,
@@ -117,8 +18,6 @@ VALUES (
    NULL,           
    NULL            
 );
-
-
 
 
 INSERT INTO BonCde (
@@ -146,16 +45,11 @@ INSERT INTO Commander (
   idRefA, idNumBC, qteA, tailleA
 )
 VALUES (
-  'DS333013',  
+  'D5333.013',  
   1001,
   2,
   42
 );
-
-
-
-
-
 
 -- Client 2 : Hélène Aztarès
 INSERT INTO Client (
@@ -177,7 +71,6 @@ VALUES (
    NULL,      
    NULL      
 );
-
 
 INSERT INTO BonCde (
   idNumBC, dateBC, codeAv, remise, modeL, typeP,
@@ -202,37 +95,13 @@ VALUES (
 
 -- Article 1
 INSERT INTO Commander (idRefA, idNumBC, qteA, tailleA)
-VALUES ('D0295009', 1002, 3, 38);
+VALUES ('D0295.009', 1002, 3, 38);
 
 -- Article 2
 INSERT INTO Commander (idRefA, idNumBC, qteA, tailleA)
-VALUES ('D6917006', 1002, 1, 38);
+VALUES ('D6917.006', 1002, 1, 38);
 
-
-
-
-
-
--- Client 2 : Hélène Aztarès
-INSERT INTO Client (
-   idNumClient, civilite, nom, prenom,
-   adNum, adVoie, adCP, adLocalite,
-   dateN, mel, telF, telP
-)
-VALUES (
-   '12678',
-   'Mme',
-   'AZTAKES',
-   'Hélène',
-   '300',
-   'Rue Ferrari',
-   '72000',
-   'Le Mans',
-   NULL,     
-   NULL,
-   NULL,      
-   NULL      
-);
+--2ème Bon de Commande
 
 INSERT INTO BonCde (
   idNumBC, dateBC, codeAv, remise, modeL, typeP,
@@ -257,22 +126,11 @@ VALUES (
 
 -- Parka 3 en 1
 INSERT INTO Commander (idRefA, idNumBC, qteA, tailleA)
-VALUES ('D0026023', 1003, 1, 40);
+VALUES ('D0026.023', 1003, 1, 40);
 
 -- Pull épaule
 INSERT INTO Commander (idRefA, idNumBC, qteA, tailleA)
-VALUES ('DS333001', 1003, 1, 38);
-
-
-
-
-
-
-
-
-
-
-
+VALUES ('D5333.001', 1003, 1, 38);
 
 -- Client 3 : Alain Verse
 INSERT INTO Client (
@@ -317,4 +175,4 @@ VALUES (
 );
 
 INSERT INTO Commander (idRefA, idNumBC, qteA, tailleA)
-VALUES ('D5333025', 1004, 1, 36);
+VALUES ('D5333.025', 1004, 1, 36);
