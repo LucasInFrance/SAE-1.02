@@ -1,3 +1,5 @@
+-- CATALOGUE, ARTICLE, PRESENTER ----------------------------------------------------------------------------------
+
 INSERT INTO Catalogue
 VALUES ('Hiver');
 
@@ -55,7 +57,7 @@ VALUES ('Hiver', 'D6917.006', '106', '');
 
 
 
---Relais
+-- RELAIS ----------------------------------------------------------------------------------
 
 INSERT INTO Livrer VALUES ('Consigne La Poste Pickup Capitole', '9', 'Rue Lafayette à l''intérieur du bureau', '31000', 'Toulouse');
 
@@ -83,7 +85,7 @@ INSERT INTO Livrer VALUES ('La Poste de Toulouse Arnaud', '17', 'Boulevard Lascr
 
 
 
--- CLIENTS -----------------------------------------------------------------------------------
+-- CLIENTS, BONCDE, COMMANDER -----------------------------------------------------------------------------------
 
 
 -- Client 1 : Marc Assein
