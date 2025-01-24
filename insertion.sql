@@ -9,6 +9,7 @@ DROP TABLE Catalogue;
 
 
 
+
 CREATE TABLE Catalogue (
    idNomC VARCHAR(30),
    CONSTRAINT pk_catalogue PRIMARY KEY (idNomC)
@@ -62,14 +63,14 @@ CREATE TABLE BonCde (
    idNumBC DECIMAL(10), -- taille non précisée
    dateBC DATE, -- Contrainte JJ/MM/AAAA
    codeAv CHAR(5),
-   remise DECIMAL (3,2),
+   remise DECIMAL (5,2),
    modeL CHAR(2),
    typeP CHAR(3),
    numCB CHAR(16),
    dExpCB CHAR(4), -- Contrainte MMAA
    cryp CHAR(3),
-   fraisCR DECIMAL(1,2),
-   fraisPort DECIMAL(1,2),
+   fraisCR DECIMAL(3,2),
+   fraisPort DECIMAL(3,2),
    idNumClient CHAR(5),
    idNomR VARCHAR(40), --30char trop cours pour certains relais
    CONSTRAINT pk_boncde PRIMARY KEY (idNumBC),
