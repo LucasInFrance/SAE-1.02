@@ -60,7 +60,7 @@ CREATE TABLE BonCde (
    idNumClient CHAR(5),
    idNomR VARCHAR(30),
    CONSTRAINT pk_boncde PRIMARY KEY (idNumBC),
-   CONSTRAINT ck_boncde_idNumBC CHECK (idNumBC>0) 
+   CONSTRAINT ck_boncde_idNumBC CHECK (idNumBC>0),
    CONSTRAINT ck_boncde_remise CHECK (remise>=0 AND remise<=100),
    CONSTRAINT ck_boncde_model CHECK (modeL='Do' OR modeL="RD" OR modeL='RR'),
    CONSTRAINT ck_boncde_typep CHECK (typeP='CAB' OR typeP='CHB' OR typeP='CHD' OR typeP='CRD'),
