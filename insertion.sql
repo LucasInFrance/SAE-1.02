@@ -9,7 +9,6 @@ DROP TABLE Catalogue;
 
 
 
-
 CREATE TABLE Catalogue (
    idNomC VARCHAR(30),
    CONSTRAINT pk_catalogue PRIMARY KEY (idNomC)
