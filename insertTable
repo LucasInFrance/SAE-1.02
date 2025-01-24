@@ -1,3 +1,102 @@
+-- Relais ------------------------------------------------------------------------------------------
+INSERT INTO Livrer(idNomR, adNumR, adVoieR, adCPR, adLocaliteR)
+VALUES
+  (
+    'Consigne La Poste Pickup Capitole',
+    '9',
+    'Rue Lafayette à l''intérieur du bureau',
+    '31000',
+    'Toulouse'
+  ),
+  (
+    'Consigne Pickup La Poste Remusat',
+    '25',
+    'Rue de Remusat dans le sas d''entrée',
+    '31000',
+    'Toulouse'
+  ),
+  (
+    'Excklusive',
+    '20',
+    'Rue Sainte Ursule',
+    '31000',
+    'Toulouse'
+  ),
+  (
+    'Four Twenty CBD Shop',
+    '40',
+    'Rue Pargaminières',
+    '31000',
+    'Toulouse'
+  ),
+  (
+    'My Look',
+    '12',
+    'Rue des Changes',
+    '31000',
+    'Toulouse'
+  ),
+  (
+    'Consigne Smart Wash Toulouse',
+    '29',
+    'Rue du Rempart Matabiau',
+    '31000',
+    'Toulouse'
+  ),
+  (
+    'GSM Services 31',
+    '3bis',
+    'Boulevard de Strasbourg',
+    '31000',
+    'Toulouse'
+  ),
+  (
+    'Midica Relais',
+    '22',
+    'Rue des Tourneurs',
+    '31000',
+    'Toulouse'
+  ),
+  (
+    'KDC Nutrition',
+    '9',
+    'Rue de Bayard',
+    '31000',
+    'Toulouse'
+  ),
+  (
+    'Asia Shop',
+    '18',
+    'Rue Matabiau',
+    '31000',
+    'Toulouse'
+  ),
+  (
+    'Carrefour City',
+    '43',
+    'Rue de Metz',
+    '31000',
+    'Toulouse'
+  ),
+  (
+    'La Poste de Toulouse Arnaud Bernard',
+    '17',
+    'Boulevard Lascrosses',
+    '31000',
+    'Toulouse'
+  );
+
+
+
+
+
+-- CLIENTS -----------------------------------------------------------------------------------
+
+
+
+
+
+
 -- Client 1 : Marc Assein
 INSERT INTO Client (
    idNumClient, civilite, nom, prenom,
@@ -219,110 +318,3 @@ VALUES (
 
 INSERT INTO Commander (idRefA, idNumBC, qteA, tailleA)
 VALUES ('D5333025', 1004, 1, 36);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-INSERT INTO Livrer(idNomR, adNumR, adVoieR, adCPR, adLocaliteR)
-VALUES
-  (
-    'Consigne La Poste Pickup Capitole',
-    '9',
-    'Rue Lafayette à l''intérieur du bureau',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'Consigne Pickup La Poste Remusat',
-    '25',
-    'Rue de Remusat dans le sas d''entrée',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'Excklusive',
-    '20',
-    'Rue Sainte Ursule',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'Four Twenty CBD Shop',
-    '40',
-    'Rue Pargaminières',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'My Look',
-    '12',
-    'Rue des Changes',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'Consigne Smart Wash Toulouse',
-    '29',
-    'Rue du Rempart Matabiau',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'GSM Services 31',
-    '3bis',
-    'Boulevard de Strasbourg',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'Midica Relais',
-    '22',
-    'Rue des Tourneurs',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'KDC Nutrition',
-    '9',
-    'Rue de Bayard',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'Asia Shop',
-    '18',
-    'Rue Matabiau',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'Carrefour City',
-    '43',
-    'Rue de Metz',
-    '31000',
-    'Toulouse'
-  ),
-  (
-    'La Poste de Toulouse Arnaud Bernard',
-    '17',
-    'Boulevard Lascrosses',
-    '31000',
-    'Toulouse'
-  );
