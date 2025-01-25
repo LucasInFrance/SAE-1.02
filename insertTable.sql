@@ -177,7 +177,7 @@ VALUES (
   NULL,    
   NULL,
   NULL,
-  0.00,
+  6.90,
   7.50,           
   '12678',        
   NULL       
