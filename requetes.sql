@@ -74,6 +74,7 @@ SELECT
     c.qteA AS quantite
 FROM Commander c, BonCde b
 WHERE c.idNumBC = b.idNumBC
+AND c.idRefA  = 'D6917.006';
+
 
 -- H Nom des clients ayant réalisé plusieurs commandes pour un montant total > 200€ avec le nb de commandes et le montant total commandé
-  AND c.idRefA  = 'D6917.006';
