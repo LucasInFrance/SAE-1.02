@@ -78,3 +78,18 @@ AND c.idRefA  = 'D6917.006';
 
 
 -- H Nom des clients ayant réalisé plusieurs commandes pour un montant total > 200€ avec le nb de commandes et le montant total commandé
+
+
+SELECT 
+    cl.nom,
+    cl.prenom,
+    COUNT(DISTINCT b.idNumBC) AS nb_commandes,
+    SUM(cm.qteA * a.prixU) AS montant_total
+FROM Client cl, BonCde b, Commander cm, Article a
+WHERE cl.idNumClient = b.idNumClient
+  AND b.idNumBC      = cm.idNumBC
+  AND cm.idRefA      = a.idRefA
+GROUP BY cl.nom, cl.prenom
+HAVING COUNT(DISTINCT b.idNumBC) > 1
+   AND SUM(cm.qteA * a.prixU) > 200;
+
